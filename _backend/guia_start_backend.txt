@@ -1,0 +1,33 @@
+1) Instalar o Node.js
+2) Para instalar o JSON-Server globalmente, crie um folder e no prompt de comando digite:
+ npm install -g json-server@0.17.4 
+3) No folder crie um arquivo chamado db.json 
+4) Inicie o servidor na porta 4000: npx json-server --watch db.json --port 4000
+
+Conteúdo do db.json:
+
+{
+  "produtos": [
+    {
+      "id": 1,
+      "descricao": "Eletrobomba 110v",
+      "categoria": "maquina de lavar",
+      "custo": 51.66,
+      "quantidadeNoEstoque": 12
+    },
+    {
+      "id": 2,
+      "descricao": "Tirante original Branstemp",
+      "categoria": "lava louca",
+      "custo": 3.9,
+      "quantidadeNoEstoque": 20
+    },
+    {
+      "id": 3,
+      "descricao": "Termoatuador Lavadora Colormaq",
+      "categoria": "maquina de lavar",
+      "custo": 29.7,
+      "quantidadeNoEstoque": 40
+    }
+  ]
+}

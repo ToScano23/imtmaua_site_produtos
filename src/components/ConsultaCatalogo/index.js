@@ -3,9 +3,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { listaDeProdutos, deleteProduto } from "../ProdutoServico";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
+import ConverteBase64ToImage from "../ConverteBase64ToImage";
 function ConsultaCatalogo() {
   const [produtos, setProdutos] = useState([]);
   const navigator = useNavigate();
+  const [mensagem, setMensagem] = useState("");
 
   useEffect(() => {
     getAllProdutos();
@@ -27,6 +29,7 @@ function ConsultaCatalogo() {
       })
       .catch((error) => {
         console.error(error);
+        setMensagem("Ocorreu um erro na exclusão de produto.");
       });
   }
 
@@ -37,7 +40,12 @@ function ConsultaCatalogo() {
       })
       .catch((error) => {
         console.error(error);
+        setMensagem("Ocorreu um erro na consulta de informações de produto.");
       });
+  }
+
+  function uploadImagem() {
+    navigator("/upload");
   }
 
   return (
@@ -46,6 +54,15 @@ function ConsultaCatalogo() {
       <button className="btn btn-primary mb-2" onClick={cadastrarProduto}>
         Cadastrar Produto
       </button>
+      <button
+        className="btn btn-primary mb-2"
+        onClick={uploadImagem}
+        style={{ marginLeft: "10px" }}
+      >
+        Upload de Imagem
+      </button>
+      {mensagem && <div className="alert alert-danger">{mensagem}</div>}
+      {""}
       <table className="table table-striped table-bordered">
         <thead>
           <tr>
@@ -54,6 +71,7 @@ function ConsultaCatalogo() {
             <th>Categoria</th>
             <th>Custo</th>
             <th>Quant</th>
+            <th>Produto</th>
             <th>Ações</th>
           </tr>
         </thead>
@@ -65,6 +83,12 @@ function ConsultaCatalogo() {
               <td>{produto.categoria}</td>
               <td>{produto.custo}</td>
               <td>{produto.quantidadeNoEstoque}</td>
+              <td>
+                <img
+                  src={ConverteBase64ToImage(produto.imagem)}
+                  alt="Imagem do produto "
+                />
+              </td>
               <td>
                 <button
                   className="btn btn-info "

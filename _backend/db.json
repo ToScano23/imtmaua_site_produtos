@@ -1,0 +1,25 @@
+{
+  "produtos": [
+    {
+      "descricao": "Eletrobomba 110v",
+      "categoria": "maquina de lavar",
+      "quantidadeNoEstoque": "125",
+      "custo": 51.66,
+      "id": 1
+    },
+    {
+      "id": 2,
+      "descricao": "Tirante original Branstemp",
+      "categoria": "lava louca",
+      "custo": 3.9,
+      "quantidadeNoEstoque": 20
+    },
+    {
+      "descricao": "Eletrobomba 110v",
+      "categoria": "Maquina de Lavar",
+      "quantidadeNoEstoque": "12",
+      "custo": "31.50",
+      "id": 3
+    }
+  ]
+}

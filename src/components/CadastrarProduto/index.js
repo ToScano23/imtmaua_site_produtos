@@ -12,6 +12,7 @@ const CadastrarProduto = () => {
   const [quantidadeNoEstoque, setQuantidadeNoEstoque] = useState("");
   const [custo, setCusto] = useState("");
   const { id } = useParams();
+  const [mensagem, setMensagem] = useState("");
   const [errors, setErrors] = useState({
     descricao: "",
     categoria: "",
@@ -31,6 +32,7 @@ const CadastrarProduto = () => {
         })
         .catch((error) => {
           console.error(error);
+          setMensagem("Ocorreu um erro na consulta para atualizar informações de produto.");
         });
     }
   }, [id]);
@@ -60,6 +62,7 @@ const CadastrarProduto = () => {
           })
           .catch((error) => {
             console.error(error);
+            setMensagem("Ocorreu um erro ao atualizar o produto.");
           });
       } else {
         cadastroDeProduto(produto)
@@ -69,6 +72,7 @@ const CadastrarProduto = () => {
           })
           .catch((error) => {
             console.error(error);
+            setMensagem("Erro ao cadastrar o produto.");
           });
       }
     }
@@ -118,13 +122,18 @@ const CadastrarProduto = () => {
         <div className="card">
           {pageTitle()}
           <div className="card-body">
+            {mensagem && <div className="alert alert-danger">{mensagem}</div>}{""}
             <form>
               <div className="form-group mb-2">
-                <label className="form-label"> Descrição:</label>
+                <label className="form-label" htmlFor="descricao">
+                  {" "}
+                  Descrição:
+                </label>
                 <input
                   type="text"
                   placeholder="Entre com a descrição do produto"
                   name="descricao"
+                  id="descricao"
                   value={descricao}
                   className={`form-control ${
                     errors.descricao ? `is-invalid` : ``
@@ -136,11 +145,15 @@ const CadastrarProduto = () => {
                 )}
               </div>
               <div className="form-group mb-2">
-                <label className="form-label"> Categoria:</label>
+                <label className="form-label" htmlFor="categoria">
+                  {" "}
+                  Categoria:
+                </label>
                 <input
                   type="text"
                   placeholder="Entre com a categoria a qual o produto pertence"
                   name="categoria"
+                  id="categoria"
                   value={categoria}
                   className={`form-control ${
                     errors.categoria ? `is-invalid` : ``
@@ -152,11 +165,15 @@ const CadastrarProduto = () => {
                 )}
               </div>
               <div className="form-group mb-2">
-                <label className="form-label"> Quantidade:</label>
+                <label className="form-label" htmlFor="quantidadeNoEstoque">
+                  {" "}
+                  Quantidade:
+                </label>
                 <input
                   type="number"
                   placeholder="Entre com a quantidade armazenada no estoque do produto"
                   name="quantidadeNoEstoque"
+                  id="quantidadeNoEstoque"
                   value={quantidadeNoEstoque}
                   className={`form-control ${
                     errors.quantidadeNoEstoque ? `is-invalid` : ``
@@ -171,11 +188,15 @@ const CadastrarProduto = () => {
                 )}
               </div>
               <div className="form-group mb-2">
-                <label className="form-label"> Custo:</label>
+                <label className="form-label" htmlFor="custo">
+                  {" "}
+                  Custo:
+                </label>
                 <input
                   type="number"
                   placeholder="Entre com o custo do produto"
                   name="custo"
+                  id="custo"
                   value={custo}
                   className={`form-control ${errors.custo ? `is-invalid` : ``}`}
                   onChange={manipulaCusto}
@@ -184,7 +205,11 @@ const CadastrarProduto = () => {
                   <div className="invalid-feedback"> {errors.custo}</div>
                 )}
               </div>
-              <button className="btn btn-success" onClick={saveOrUpdateProduto}>
+              <button
+                id="submit"
+                className="btn btn-success"
+                onClick={saveOrUpdateProduto}
+              >
                 Submit{" "}
               </button>
             </form>
