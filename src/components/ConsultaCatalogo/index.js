@@ -51,9 +51,6 @@ function ConsultaCatalogo() {
   return (
     <div className="container">
       <h5 className="text-center">Consulta Catalogo </h5>
-      <button className="btn btn-primary mb-2" onClick={cadastrarProduto}>
-        Cadastrar Produto
-      </button>
       <button
         className="btn btn-primary mb-2"
         onClick={uploadImagem}
