@@ -112,7 +112,7 @@ const CadastrarProduto = () => {
     if (id) {
       return <h2 className="text-center"> Atualizar Produto</h2>;
     } else {
-      return <h2 className="text-center"> Cadastrar Produto</h2>;
+      return <h2 className="text-center"> Página de Cadastro</h2>;
     }
   }
   return (
